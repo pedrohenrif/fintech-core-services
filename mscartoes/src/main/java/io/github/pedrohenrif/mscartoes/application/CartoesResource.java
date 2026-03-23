@@ -1,11 +1,14 @@
 package io.github.pedrohenrif.mscartoes.application;
 
+import java.util.List;
+
 import org.apache.hc.core5.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.pedrohenrif.mscartoes.application.dto.CartaoSaveRequest;
@@ -31,5 +34,12 @@ public class CartoesResource {
         service.save(cartao);
 
         return ResponseEntity.status(HttpStatus.SC_CREATED).build();
+    }
+
+    @GetMapping(params = "renda")
+    public ResponseEntity <List<Cartao>> getCartoesRendaAte(@RequestParam("renda") Long renda) {
+        List<Cartao> list = service.getCartoesRendaMenorIgual(renda);
+
+        return ResponseEntity.ok(list);
     }
 }
