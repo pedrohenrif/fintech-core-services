@@ -13,5 +13,5 @@ import lombok.NoArgsConstructor;
 @Builder
 public class SituacaoCliente {
     private DadosCliente cliente;
-    private List<CartaoCredito> cartoes;
+    private List<CartaoCliente> cartoes;
 }
